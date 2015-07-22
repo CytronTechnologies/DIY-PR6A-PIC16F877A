@@ -1,0 +1,940 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.80 build 6738 
+                                                                                               Wed Jun 20 22:46:24 2012
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 6738
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 6738"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F877A
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           # 20 "C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Sour
+                                 ce Code PR6\PR6(BLuetooth Remote Control).c"
+    43                           	psect config,class=CONFIG,delta=2 ;#
+    44                           # 20 "C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Sour
+                                 ce Code PR6\PR6(BLuetooth Remote Control).c"
+    45  2007  3F32               	dw 0x3F32 ;#
+    46                           	FNCALL	_main,_init
+    47                           	FNCALL	_main,_receive
+    48                           	FNCALL	_main,_display
+    49                           	FNROOT	_main
+    50                           	global	_a
+    51                           psect	nvCOMMON,class=COMMON,space=1
+    52                           global __pnvCOMMON
+    53  0072                     __pnvCOMMON:
+    54  0072                     _a:
+    55  0072                            ds      1
+    56                           
+    57                           	global	_PORTD
+    58  0008                     _PORTD	set	8
+    59                           	global	_RCREG
+    60  001A                     _RCREG	set	26
+    61                           	global	_TXREG
+    62  0019                     _TXREG	set	25
+    63                           	global	_CREN
+    64  00C4                     _CREN	set	196
+    65                           	global	_RCIF
+    66  0065                     _RCIF	set	101
+    67                           	global	_SPEN
+    68  00C7                     _SPEN	set	199
+    69                           	global	_TXIF
+    70  0064                     _TXIF	set	100
+    71                           	global	_SPBRG
+    72  0099                     _SPBRG	set	153
+    73                           	global	_TRISD
+    74  0088                     _TRISD	set	136
+    75                           	global	_BRGH
+    76  04C2                     _BRGH	set	1218
+    77                           	global	_TXEN
+    78  04C5                     _TXEN	set	1221
+    79                           	file	"PR 6.as"
+    80                           	line	#
+    81                           psect cinit,class=CODE,delta=2
+    82                           global start_initialization
+    83  06C4                     start_initialization:
+    84                           
+    85                           psect cinit,class=CODE,delta=2
+    86                           global end_of_initialization
+    87                           
+    88                           ;End of C runtime variable initialization code
+    89                           
+    90  06C4                     end_of_initialization:
+    91  06C4  0183               clrf status
+    92  06C5  120A  118A  2EF4   ljmp _main	;jump to C main() function
+    93                           psect	cstackCOMMON,class=COMMON,space=1
+    94                           global __pcstackCOMMON
+    95  0070                     __pcstackCOMMON:
+    96                           	global	?_init
+    97  0070                     ?_init:	; 0 bytes @ 0x0
+    98                           	global	??_init
+    99  0070                     ??_init:	; 0 bytes @ 0x0
+   100                           	global	?_display
+   101  0070                     ?_display:	; 0 bytes @ 0x0
+   102                           	global	??_display
+   103  0070                     ??_display:	; 0 bytes @ 0x0
+   104                           	global	??_receive
+   105  0070                     ??_receive:	; 0 bytes @ 0x0
+   106                           	global	?_main
+   107  0070                     ?_main:	; 0 bytes @ 0x0
+   108                           	global	?_receive
+   109  0070                     ?_receive:	; 1 bytes @ 0x0
+   110                           	global	display@c
+   111  0070                     display@c:	; 1 bytes @ 0x0
+   112  0070                     	ds	1
+   113                           	global	??_main
+   114  0071                     ??_main:	; 0 bytes @ 0x1
+   115  0071                     	ds	1
+   116 ;;Data sizes: Strings 0, constant 0, data 0, bss 0, persistent 1 stack 0
+   117 ;;Auto spaces:   Size  Autos    Used
+   118 ;; COMMON          14      2       3
+   119 ;; BANK0           80      0       0
+   120 ;; BANK1           80      0       0
+   121 ;; BANK3           96      0       0
+   122 ;; BANK2           96      0       0
+   123                           
+   124 ;;
+   125 ;; Pointer list with targets:
+   126                           
+   127                           
+   128                           
+   129 ;;
+   130 ;; Critical Paths under _main in COMMON
+   131 ;;
+   132 ;;   _main->_receive
+   133 ;;   _main->_display
+   134 ;;
+   135 ;; Critical Paths under _main in BANK0
+   136 ;;
+   137 ;;   None.
+   138 ;;
+   139 ;; Critical Paths under _main in BANK1
+   140 ;;
+   141 ;;   None.
+   142 ;;
+   143 ;; Critical Paths under _main in BANK3
+   144 ;;
+   145 ;;   None.
+   146 ;;
+   147 ;; Critical Paths under _main in BANK2
+   148 ;;
+   149 ;;   None.
+   150                           
+   151 ;;
+   152 ;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   153 ;;
+   154                           
+   155 ;;
+   156 ;;Call Graph Tables:
+   157 ;;
+   158 ;; ---------------------------------------------------------------------------------
+   159 ;; (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+   160 ;; ---------------------------------------------------------------------------------
+   161 ;; (0) _main                                                 1     1      0      15
+   162 ;;                                              1 COMMON     1     1      0
+   163 ;;                               _init
+   164 ;;                            _receive
+   165 ;;                            _display
+   166 ;; ---------------------------------------------------------------------------------
+   167 ;; (1) _receive                                              1     1      0       0
+   168 ;;                                              0 COMMON     1     1      0
+   169 ;; ---------------------------------------------------------------------------------
+   170 ;; (1) _display                                              1     1      0      15
+   171 ;;                                              0 COMMON     1     1      0
+   172 ;; ---------------------------------------------------------------------------------
+   173 ;; (1) _init                                                 0     0      0       0
+   174 ;; ---------------------------------------------------------------------------------
+   175 ;; Estimated maximum stack depth 1
+   176 ;; ---------------------------------------------------------------------------------
+   177                           
+   178 ;; Call Graph Graphs:
+   179                           
+   180 ;; _main (ROOT)
+   181 ;;   _init
+   182 ;;   _receive
+   183 ;;   _display
+   184 ;;
+   185                           
+   186 ;; Address spaces:
+   187                           
+   188 ;;Name               Size   Autos  Total    Cost      Usage
+   189 ;;BITCOMMON            E      0       0       0        0.0%
+   190 ;;EEDATA             100      0       0       0        0.0%
+   191 ;;NULL                 0      0       0       0        0.0%
+   192 ;;CODE                 0      0       0       0        0.0%
+   193 ;;COMMON               E      2       3       1       21.4%
+   194 ;;BITSFR0              0      0       0       1        0.0%
+   195 ;;SFR0                 0      0       0       1        0.0%
+   196 ;;BITSFR1              0      0       0       2        0.0%
+   197 ;;SFR1                 0      0       0       2        0.0%
+   198 ;;STACK                0      0       1       2        0.0%
+   199 ;;ABS                  0      0       3       3        0.0%
+   200 ;;BITBANK0            50      0       0       4        0.0%
+   201 ;;BITSFR3              0      0       0       4        0.0%
+   202 ;;SFR3                 0      0       0       4        0.0%
+   203 ;;BANK0               50      0       0       5        0.0%
+   204 ;;BITSFR2              0      0       0       5        0.0%
+   205 ;;SFR2                 0      0       0       5        0.0%
+   206 ;;BITBANK1            50      0       0       6        0.0%
+   207 ;;BANK1               50      0       0       7        0.0%
+   208 ;;BITBANK3            60      0       0       8        0.0%
+   209 ;;BANK3               60      0       0       9        0.0%
+   210 ;;BITBANK2            60      0       0      10        0.0%
+   211 ;;BANK2               60      0       0      11        0.0%
+   212 ;;DATA                 0      0       4      12        0.0%
+   213                           
+   214                           	global	_main
+   215                           psect	maintext,global,class=CODE,delta=2
+   216                           global __pmaintext
+   217  06F4                     __pmaintext:
+   218                           
+   219 ;; *************** function _main *****************
+   220 ;; Defined at:
+   221 ;;		line 66 in file "C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Source Code PR6\PR6(B
+       Luetooth Remote Control).c"
+   222 ;; Parameters:    Size  Location     Type
+   223 ;;		None
+   224 ;; Auto vars:     Size  Location     Type
+   225 ;;		None
+   226 ;; Return value:  Size  Location     Type
+   227 ;;		None               void
+   228 ;; Registers used:
+   229 ;;		wreg, status,2, status,0, pclath, cstack
+   230 ;; Tracked objects:
+   231 ;;		On entry : 17F/0
+   232 ;;		On exit  : 0/0
+   233 ;;		Unchanged: 0/0
+   234 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   235 ;;      Params:         0       0       0       0       0
+   236 ;;      Locals:         0       0       0       0       0
+   237 ;;      Temps:          1       0       0       0       0
+   238 ;;      Totals:         1       0       0       0       0
+   239 ;;Total ram usage:        1 bytes
+   240 ;; Hardware stack levels required when called:    1
+   241 ;; This function calls:
+   242 ;;		_init
+   243 ;;		_receive
+   244 ;;		_display
+   245 ;; This function is called by:
+   246 ;;		Startup code after reset
+   247 ;; This function uses a non-reentrant model
+   248 ;;
+   249                           psect	maintext
+   250                           	file	"C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Sou
+                                 rce Code PR6\PR6(BLuetooth Remote Control).c"
+   251                           	line	66
+   252                           	global	__size_of_main
+   253  010C                     	__size_of_main	equ	__end_of_main-_main
+   254                           	
+   255  06F4                     _main:	
+   256                           	opt	stack 7
+   257                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   258                           	line	67
+   259                           	
+   260  06F4                     l1766:	
+   261                           ;PR6(BLuetooth Remote Control).c: 67: init();
+   262  06F4  120A  118A  26E3   	fcall	_init
+              120A  118A         
+   263  06F9  2EFA               	goto	l1768
+   264                           	line	69
+   265                           ;PR6(BLuetooth Remote Control).c: 69: while(1)
+   266                           	
+   267  06FA                     l576:	
+   268                           	line	71
+   269                           	
+   270  06FA                     l1768:	
+   271                           ;PR6(BLuetooth Remote Control).c: 70: {
+   272                           ;PR6(BLuetooth Remote Control).c: 71: a = receive();
+   273  06FA  120A  118A  26D4   	fcall	_receive
+              120A  118A         
+   274  06FF  00F1               	movwf	(??_main+0)+0
+   275  0700  0871               	movf	(??_main+0)+0,w
+   276  0701  00F2               	movwf	(_a)
+   277                           	line	72
+   278                           	
+   279  0702                     l1770:	
+   280                           ;PR6(BLuetooth Remote Control).c: 72: if (a == 'o')
+   281  0702  0872               	movf	(_a),w
+   282  0703  3A6F               	xorlw	06Fh
+   283  0704  1D03               	skipz
+   284  0705  2F07               	goto	u2161
+   285  0706  2F08               	goto	u2160
+   286  0707                     u2161:
+   287  0707  2EFA               	goto	l1768
+   288  0708                     u2160:
+   289                           	line	74
+   290                           	
+   291  0708                     l1772:	
+   292                           ;PR6(BLuetooth Remote Control).c: 73: {
+   293                           ;PR6(BLuetooth Remote Control).c: 74: a = receive();
+   294  0708  120A  118A  26D4   	fcall	_receive
+              120A  118A         
+   295  070D  00F1               	movwf	(??_main+0)+0
+   296  070E  0871               	movf	(??_main+0)+0,w
+   297  070F  00F2               	movwf	(_a)
+   298                           	line	75
+   299                           	
+   300  0710                     l1774:	
+   301                           ;PR6(BLuetooth Remote Control).c: 75: if (a == 'k') break;
+   302  0710  0872               	movf	(_a),w
+   303  0711  3A6B               	xorlw	06Bh
+   304  0712  1D03               	skipz
+   305  0713  2F15               	goto	u2171
+   306  0714  2F16               	goto	u2170
+   307  0715                     u2171:
+   308  0715  2EFA               	goto	l1768
+   309  0716                     u2170:
+   310  0716  2F1B               	goto	l1778
+   311                           	
+   312  0717                     l1776:	
+   313  0717  2F1B               	goto	l1778
+   314                           	
+   315  0718                     l578:	
+   316  0718  2EFA               	goto	l1768
+   317                           	line	76
+   318                           	
+   319  0719                     l577:	
+   320  0719  2EFA               	goto	l1768
+   321                           	line	77
+   322                           	
+   323  071A                     l580:	
+   324                           	line	69
+   325  071A  2EFA               	goto	l1768
+   326                           	
+   327  071B                     l579:	
+   328                           	line	80
+   329                           	
+   330  071B                     l1778:	
+   331                           ;PR6(BLuetooth Remote Control).c: 76: }
+   332                           ;PR6(BLuetooth Remote Control).c: 77: }
+   333                           ;PR6(BLuetooth Remote Control).c: 80: display('C');
+   334  071B  3043               	movlw	(043h)
+   335  071C  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   336                           	line	81
+   337                           ;PR6(BLuetooth Remote Control).c: 81: display('y');
+   338  0721  3079               	movlw	(079h)
+   339  0722  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   340                           	line	82
+   341                           ;PR6(BLuetooth Remote Control).c: 82: display('t');
+   342  0727  3074               	movlw	(074h)
+   343  0728  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   344                           	line	83
+   345                           ;PR6(BLuetooth Remote Control).c: 83: display('r');
+   346  072D  3072               	movlw	(072h)
+   347  072E  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   348                           	line	84
+   349                           ;PR6(BLuetooth Remote Control).c: 84: display('o');
+   350  0733  306F               	movlw	(06Fh)
+   351  0734  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   352                           	line	85
+   353                           ;PR6(BLuetooth Remote Control).c: 85: display('n');
+   354  0739  306E               	movlw	(06Eh)
+   355  073A  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   356                           	line	86
+   357                           ;PR6(BLuetooth Remote Control).c: 86: display(0x0a);
+   358  073F  300A               	movlw	(0Ah)
+   359  0740  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   360                           	line	87
+   361                           ;PR6(BLuetooth Remote Control).c: 87: display(0x0d);
+   362  0745  300D               	movlw	(0Dh)
+   363  0746  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   364                           	line	88
+   365                           ;PR6(BLuetooth Remote Control).c: 88: display('P');
+   366  074B  3050               	movlw	(050h)
+   367  074C  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   368                           	line	89
+   369                           ;PR6(BLuetooth Remote Control).c: 89: display('r');
+   370  0751  3072               	movlw	(072h)
+   371  0752  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   372                           	line	90
+   373                           ;PR6(BLuetooth Remote Control).c: 90: display('e');
+   374  0757  3065               	movlw	(065h)
+   375  0758  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   376                           	line	91
+   377                           ;PR6(BLuetooth Remote Control).c: 91: display('s');
+   378  075D  3073               	movlw	(073h)
+   379  075E  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   380                           	line	92
+   381                           ;PR6(BLuetooth Remote Control).c: 92: display('s');
+   382  0763  3073               	movlw	(073h)
+   383  0764  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   384                           	line	93
+   385                           ;PR6(BLuetooth Remote Control).c: 93: display(0x20);
+   386  0769  3020               	movlw	(020h)
+   387  076A  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   388                           	line	94
+   389                           ;PR6(BLuetooth Remote Control).c: 94: display('a');
+   390  076F  3061               	movlw	(061h)
+   391  0770  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   392                           	line	95
+   393                           ;PR6(BLuetooth Remote Control).c: 95: display('n');
+   394  0775  306E               	movlw	(06Eh)
+   395  0776  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   396                           	line	96
+   397                           ;PR6(BLuetooth Remote Control).c: 96: display('y');
+   398  077B  3079               	movlw	(079h)
+   399  077C  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   400                           	line	97
+   401                           ;PR6(BLuetooth Remote Control).c: 97: display(0x20);
+   402  0781  3020               	movlw	(020h)
+   403  0782  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   404                           	line	98
+   405                           ;PR6(BLuetooth Remote Control).c: 98: display('n');
+   406  0787  306E               	movlw	(06Eh)
+   407  0788  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   408                           	line	99
+   409                           ;PR6(BLuetooth Remote Control).c: 99: display('u');
+   410  078D  3075               	movlw	(075h)
+   411  078E  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   412                           	line	100
+   413                           ;PR6(BLuetooth Remote Control).c: 100: display('m');
+   414  0793  306D               	movlw	(06Dh)
+   415  0794  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   416                           	line	101
+   417                           ;PR6(BLuetooth Remote Control).c: 101: display('b');
+   418  0799  3062               	movlw	(062h)
+   419  079A  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   420                           	line	102
+   421                           ;PR6(BLuetooth Remote Control).c: 102: display('e');
+   422  079F  3065               	movlw	(065h)
+   423  07A0  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   424                           	line	103
+   425                           ;PR6(BLuetooth Remote Control).c: 103: display('r');
+   426  07A5  3072               	movlw	(072h)
+   427  07A6  120A  118A  26C8   	fcall	_display
+              120A  118A         
+   428                           	line	105
+   429                           	
+   430  07AB                     l1780:	
+   431                           ;PR6(BLuetooth Remote Control).c: 105: PORTD = 1;
+   432  07AB  3001               	movlw	(01h)
+   433  07AC  1283               	bcf	status, 5	;RP0=0, select bank0
+   434  07AD  1303               	bcf	status, 6	;RP1=0, select bank0
+   435  07AE  0088               	movwf	(8)	;volatile
+   436  07AF  2FB0               	goto	l1782
+   437                           	line	109
+   438                           ;PR6(BLuetooth Remote Control).c: 109: while(1)
+   439                           	
+   440  07B0                     l581:	
+   441                           	line	111
+   442                           	
+   443  07B0                     l1782:	
+   444                           ;PR6(BLuetooth Remote Control).c: 110: {
+   445                           ;PR6(BLuetooth Remote Control).c: 111: a = receive();
+   446  07B0  120A  118A  26D4   	fcall	_receive
+              120A  118A         
+   447  07B5  00F1               	movwf	(??_main+0)+0
+   448  07B6  0871               	movf	(??_main+0)+0,w
+   449  07B7  00F2               	movwf	(_a)
+   450                           	line	112
+   451                           	
+   452  07B8                     l1784:	
+   453                           ;PR6(BLuetooth Remote Control).c: 112: if (a=='1'||a=='2'||a=='3'||a=='4'||a=='5'||a=='6
+                                 '||a=='7'||a=='8'||a=='9'||a=='0')
+   454  07B8  0872               	movf	(_a),w
+   455  07B9  3A31               	xorlw	031h
+   456  07BA  1903               	skipnz
+   457  07BB  2FBD               	goto	u2181
+   458  07BC  2FBE               	goto	u2180
+   459  07BD                     u2181:
+   460  07BD  2FF5               	goto	l1804
+   461  07BE                     u2180:
+   462                           	
+   463  07BE                     l1786:	
+   464  07BE  0872               	movf	(_a),w
+   465  07BF  3A32               	xorlw	032h
+   466  07C0  1903               	skipnz
+   467  07C1  2FC3               	goto	u2191
+   468  07C2  2FC4               	goto	u2190
+   469  07C3                     u2191:
+   470  07C3  2FF5               	goto	l1804
+   471  07C4                     u2190:
+   472                           	
+   473  07C4                     l1788:	
+   474  07C4  0872               	movf	(_a),w
+   475  07C5  3A33               	xorlw	033h
+   476  07C6  1903               	skipnz
+   477  07C7  2FC9               	goto	u2201
+   478  07C8  2FCA               	goto	u2200
+   479  07C9                     u2201:
+   480  07C9  2FF5               	goto	l1804
+   481  07CA                     u2200:
+   482                           	
+   483  07CA                     l1790:	
+   484  07CA  0872               	movf	(_a),w
+   485  07CB  3A34               	xorlw	034h
+   486  07CC  1903               	skipnz
+   487  07CD  2FCF               	goto	u2211
+   488  07CE  2FD0               	goto	u2210
+   489  07CF                     u2211:
+   490  07CF  2FF5               	goto	l1804
+   491  07D0                     u2210:
+   492                           	
+   493  07D0                     l1792:	
+   494  07D0  0872               	movf	(_a),w
+   495  07D1  3A35               	xorlw	035h
+   496  07D2  1903               	skipnz
+   497  07D3  2FD5               	goto	u2221
+   498  07D4  2FD6               	goto	u2220
+   499  07D5                     u2221:
+   500  07D5  2FF5               	goto	l1804
+   501  07D6                     u2220:
+   502                           	
+   503  07D6                     l1794:	
+   504  07D6  0872               	movf	(_a),w
+   505  07D7  3A36               	xorlw	036h
+   506  07D8  1903               	skipnz
+   507  07D9  2FDB               	goto	u2231
+   508  07DA  2FDC               	goto	u2230
+   509  07DB                     u2231:
+   510  07DB  2FF5               	goto	l1804
+   511  07DC                     u2230:
+   512                           	
+   513  07DC                     l1796:	
+   514  07DC  0872               	movf	(_a),w
+   515  07DD  3A37               	xorlw	037h
+   516  07DE  1903               	skipnz
+   517  07DF  2FE1               	goto	u2241
+   518  07E0  2FE2               	goto	u2240
+   519  07E1                     u2241:
+   520  07E1  2FF5               	goto	l1804
+   521  07E2                     u2240:
+   522                           	
+   523  07E2                     l1798:	
+   524  07E2  0872               	movf	(_a),w
+   525  07E3  3A38               	xorlw	038h
+   526  07E4  1903               	skipnz
+   527  07E5  2FE7               	goto	u2251
+   528  07E6  2FE8               	goto	u2250
+   529  07E7                     u2251:
+   530  07E7  2FF5               	goto	l1804
+   531  07E8                     u2250:
+   532                           	
+   533  07E8                     l1800:	
+   534  07E8  0872               	movf	(_a),w
+   535  07E9  3A39               	xorlw	039h
+   536  07EA  1903               	skipnz
+   537  07EB  2FED               	goto	u2261
+   538  07EC  2FEE               	goto	u2260
+   539  07ED                     u2261:
+   540  07ED  2FF5               	goto	l1804
+   541  07EE                     u2260:
+   542                           	
+   543  07EE                     l1802:	
+   544  07EE  0872               	movf	(_a),w
+   545  07EF  3A30               	xorlw	030h
+   546  07F0  1D03               	skipz
+   547  07F1  2FF3               	goto	u2271
+   548  07F2  2FF4               	goto	u2270
+   549  07F3                     u2271:
+   550  07F3  2FB0               	goto	l1782
+   551  07F4                     u2270:
+   552  07F4  2FF5               	goto	l1804
+   553                           	
+   554  07F5                     l584:	
+   555                           	line	114
+   556                           	
+   557  07F5                     l1804:	
+   558                           ;PR6(BLuetooth Remote Control).c: 113: {
+   559                           ;PR6(BLuetooth Remote Control).c: 114: PORTD = a-0x30;
+   560  07F5  0872               	movf	(_a),w
+   561  07F6  3ED0               	addlw	0D0h
+   562  07F7  1283               	bcf	status, 5	;RP0=0, select bank0
+   563  07F8  1303               	bcf	status, 6	;RP1=0, select bank0
+   564  07F9  0088               	movwf	(8)	;volatile
+   565  07FA  2FB0               	goto	l1782
+   566                           	line	115
+   567                           	
+   568  07FB                     l582:	
+   569  07FB  2FB0               	goto	l1782
+   570                           	line	116
+   571                           	
+   572  07FC                     l585:	
+   573                           	line	109
+   574  07FC  2FB0               	goto	l1782
+   575                           	
+   576  07FD                     l586:	
+   577                           	line	117
+   578                           	
+   579  07FD                     l587:	
+   580                           	global	start
+   581  07FD  120A  118A  2800   	ljmp	start
+   582                           	opt stack 0
+   583                           GLOBAL	__end_of_main
+   584  0800                     	__end_of_main:
+   585 ;; =============== function _main ends ============
+   586                           
+   587                           	signat	_main,88
+   588                           	global	_receive
+   589                           psect	text85,local,class=CODE,delta=2
+   590                           global __ptext85
+   591  06D4                     __ptext85:
+   592                           
+   593 ;; *************** function _receive *****************
+   594 ;; Defined at:
+   595 ;;		line 54 in file "C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Source Code PR6\PR6(B
+       Luetooth Remote Control).c"
+   596 ;; Parameters:    Size  Location     Type
+   597 ;;		None
+   598 ;; Auto vars:     Size  Location     Type
+   599 ;;		None
+   600 ;; Return value:  Size  Location     Type
+   601 ;;                  1    wreg      unsigned char 
+   602 ;; Registers used:
+   603 ;;		wreg
+   604 ;; Tracked objects:
+   605 ;;		On entry : 0/0
+   606 ;;		On exit  : 0/0
+   607 ;;		Unchanged: 0/0
+   608 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   609 ;;      Params:         0       0       0       0       0
+   610 ;;      Locals:         0       0       0       0       0
+   611 ;;      Temps:          1       0       0       0       0
+   612 ;;      Totals:         1       0       0       0       0
+   613 ;;Total ram usage:        1 bytes
+   614 ;; Hardware stack levels used:    1
+   615 ;; This function calls:
+   616 ;;		Nothing
+   617 ;; This function is called by:
+   618 ;;		_main
+   619 ;; This function uses a non-reentrant model
+   620 ;;
+   621                           psect	text85
+   622                           	file	"C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Sou
+                                 rce Code PR6\PR6(BLuetooth Remote Control).c"
+   623                           	line	54
+   624                           	global	__size_of_receive
+   625  000F                     	__size_of_receive	equ	__end_of_receive-_receive
+   626                           	
+   627  06D4                     _receive:	
+   628                           	opt	stack 7
+   629                           ; Regs used in _receive: [wreg]
+   630                           	line	55
+   631                           	
+   632  06D4                     l974:	
+   633                           ;PR6(BLuetooth Remote Control).c: 55: while (RCIF == 0);
+   634  06D4  2ED5               	goto	l570
+   635                           	
+   636  06D5                     l571:	
+   637                           	
+   638  06D5                     l570:	
+   639  06D5  1283               	bcf	status, 5	;RP0=0, select bank0
+   640  06D6  1303               	bcf	status, 6	;RP1=0, select bank0
+   641  06D7  1E8C               	btfss	(101/8),(101)&7
+   642  06D8  2EDA               	goto	u21
+   643  06D9  2EDB               	goto	u20
+   644  06DA                     u21:
+   645  06DA  2ED5               	goto	l570
+   646  06DB                     u20:
+   647  06DB  2EDC               	goto	l976
+   648                           	
+   649  06DC                     l572:	
+   650                           	line	56
+   651                           	
+   652  06DC                     l976:	
+   653                           ;PR6(BLuetooth Remote Control).c: 56: a = RCREG;
+   654  06DC  081A               	movf	(26),w	;volatile
+   655  06DD  00F0               	movwf	(??_receive+0)+0
+   656  06DE  0870               	movf	(??_receive+0)+0,w
+   657  06DF  00F2               	movwf	(_a)
+   658                           	line	57
+   659                           ;PR6(BLuetooth Remote Control).c: 57: return a;
+   660  06E0  0872               	movf	(_a),w
+   661  06E1  2EE2               	goto	l573
+   662                           	
+   663  06E2                     l978:	
+   664                           	line	58
+   665                           	
+   666  06E2                     l573:	
+   667  06E2  0008               	return
+   668                           	opt stack 0
+   669                           GLOBAL	__end_of_receive
+   670  06E3                     	__end_of_receive:
+   671 ;; =============== function _receive ends ============
+   672                           
+   673                           	signat	_receive,89
+   674                           	global	_display
+   675                           psect	text86,local,class=CODE,delta=2
+   676                           global __ptext86
+   677  06C8                     __ptext86:
+   678                           
+   679 ;; *************** function _display *****************
+   680 ;; Defined at:
+   681 ;;		line 48 in file "C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Source Code PR6\PR6(B
+       Luetooth Remote Control).c"
+   682 ;; Parameters:    Size  Location     Type
+   683 ;;  c               1    wreg     unsigned char 
+   684 ;; Auto vars:     Size  Location     Type
+   685 ;;  c               1    0[COMMON] unsigned char 
+   686 ;; Return value:  Size  Location     Type
+   687 ;;		None               void
+   688 ;; Registers used:
+   689 ;;		wreg
+   690 ;; Tracked objects:
+   691 ;;		On entry : 0/0
+   692 ;;		On exit  : 0/0
+   693 ;;		Unchanged: 0/0
+   694 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   695 ;;      Params:         0       0       0       0       0
+   696 ;;      Locals:         1       0       0       0       0
+   697 ;;      Temps:          0       0       0       0       0
+   698 ;;      Totals:         1       0       0       0       0
+   699 ;;Total ram usage:        1 bytes
+   700 ;; Hardware stack levels used:    1
+   701 ;; This function calls:
+   702 ;;		Nothing
+   703 ;; This function is called by:
+   704 ;;		_main
+   705 ;; This function uses a non-reentrant model
+   706 ;;
+   707                           psect	text86
+   708                           	file	"C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Sou
+                                 rce Code PR6\PR6(BLuetooth Remote Control).c"
+   709                           	line	48
+   710                           	global	__size_of_display
+   711  000C                     	__size_of_display	equ	__end_of_display-_display
+   712                           	
+   713  06C8                     _display:	
+   714                           	opt	stack 7
+   715                           ; Regs used in _display: [wreg]
+   716                           ;display@c stored from wreg
+   717  06C8  00F0               	movwf	(display@c)
+   718                           	line	49
+   719                           	
+   720  06C9                     l970:	
+   721                           ;PR6(BLuetooth Remote Control).c: 49: while (TXIF == 0);
+   722  06C9  2ECA               	goto	l564
+   723                           	
+   724  06CA                     l565:	
+   725                           	
+   726  06CA                     l564:	
+   727  06CA  1283               	bcf	status, 5	;RP0=0, select bank0
+   728  06CB  1303               	bcf	status, 6	;RP1=0, select bank0
+   729  06CC  1E0C               	btfss	(100/8),(100)&7
+   730  06CD  2ECF               	goto	u11
+   731  06CE  2ED0               	goto	u10
+   732  06CF                     u11:
+   733  06CF  2ECA               	goto	l564
+   734  06D0                     u10:
+   735  06D0  2ED1               	goto	l972
+   736                           	
+   737  06D1                     l566:	
+   738                           	line	50
+   739                           	
+   740  06D1                     l972:	
+   741                           ;PR6(BLuetooth Remote Control).c: 50: TXREG = c;
+   742  06D1  0870               	movf	(display@c),w
+   743  06D2  0099               	movwf	(25)	;volatile
+   744                           	line	51
+   745                           	
+   746  06D3                     l567:	
+   747  06D3  0008               	return
+   748                           	opt stack 0
+   749                           GLOBAL	__end_of_display
+   750  06D4                     	__end_of_display:
+   751 ;; =============== function _display ends ============
+   752                           
+   753                           	signat	_display,4216
+   754                           	global	_init
+   755                           psect	text87,local,class=CODE,delta=2
+   756                           global __ptext87
+   757  06E3                     __ptext87:
+   758                           
+   759 ;; *************** function _init *****************
+   760 ;; Defined at:
+   761 ;;		line 37 in file "C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Source Code PR6\PR6(B
+       Luetooth Remote Control).c"
+   762 ;; Parameters:    Size  Location     Type
+   763 ;;		None
+   764 ;; Auto vars:     Size  Location     Type
+   765 ;;		None
+   766 ;; Return value:  Size  Location     Type
+   767 ;;		None               void
+   768 ;; Registers used:
+   769 ;;		wreg, status,2
+   770 ;; Tracked objects:
+   771 ;;		On entry : 0/0
+   772 ;;		On exit  : 0/0
+   773 ;;		Unchanged: 0/0
+   774 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   775 ;;      Params:         0       0       0       0       0
+   776 ;;      Locals:         0       0       0       0       0
+   777 ;;      Temps:          0       0       0       0       0
+   778 ;;      Totals:         0       0       0       0       0
+   779 ;;Total ram usage:        0 bytes
+   780 ;; Hardware stack levels used:    1
+   781 ;; This function calls:
+   782 ;;		Nothing
+   783 ;; This function is called by:
+   784 ;;		_main
+   785 ;; This function uses a non-reentrant model
+   786 ;;
+   787                           psect	text87
+   788                           	file	"C:\Users\Phang\Desktop\New folder\PR 6A _ Bluetooth (SKKCA-21) Remote Control\Sou
+                                 rce Code PR6\PR6(BLuetooth Remote Control).c"
+   789                           	line	37
+   790                           	global	__size_of_init
+   791  0011                     	__size_of_init	equ	__end_of_init-_init
+   792                           	
+   793  06E3                     _init:	
+   794                           	opt	stack 7
+   795                           ; Regs used in _init: [wreg+status,2]
+   796                           	line	38
+   797                           	
+   798  06E3                     l956:	
+   799                           ;PR6(BLuetooth Remote Control).c: 38: SPBRG=0x0A;
+   800  06E3  300A               	movlw	(0Ah)
+   801  06E4  1683               	bsf	status, 5	;RP0=1, select bank1
+   802  06E5  1303               	bcf	status, 6	;RP1=0, select bank1
+   803  06E6  0099               	movwf	(153)^080h	;volatile
+   804                           	line	39
+   805                           	
+   806  06E7                     l958:	
+   807                           ;PR6(BLuetooth Remote Control).c: 39: BRGH=1;
+   808  06E7  1518               	bsf	(1218/8)^080h,(1218)&7
+   809                           	line	40
+   810                           	
+   811  06E8                     l960:	
+   812                           ;PR6(BLuetooth Remote Control).c: 40: TXEN=1;
+   813  06E8  1698               	bsf	(1221/8)^080h,(1221)&7
+   814                           	line	41
+   815                           	
+   816  06E9                     l962:	
+   817                           ;PR6(BLuetooth Remote Control).c: 41: CREN=1;
+   818  06E9  1283               	bcf	status, 5	;RP0=0, select bank0
+   819  06EA  1303               	bcf	status, 6	;RP1=0, select bank0
+   820  06EB  1618               	bsf	(196/8),(196)&7
+   821                           	line	42
+   822                           	
+   823  06EC                     l964:	
+   824                           ;PR6(BLuetooth Remote Control).c: 42: SPEN=1;
+   825  06EC  1798               	bsf	(199/8),(199)&7
+   826                           	line	43
+   827                           	
+   828  06ED                     l966:	
+   829                           ;PR6(BLuetooth Remote Control).c: 43: TRISD = 0b00000000;
+   830  06ED  1683               	bsf	status, 5	;RP0=1, select bank1
+   831  06EE  1303               	bcf	status, 6	;RP1=0, select bank1
+   832  06EF  0188               	clrf	(136)^080h	;volatile
+   833                           	line	44
+   834                           	
+   835  06F0                     l968:	
+   836                           ;PR6(BLuetooth Remote Control).c: 44: PORTD = 0b00000000;
+   837  06F0  1283               	bcf	status, 5	;RP0=0, select bank0
+   838  06F1  1303               	bcf	status, 6	;RP1=0, select bank0
+   839  06F2  0188               	clrf	(8)	;volatile
+   840                           	line	45
+   841                           	
+   842  06F3                     l561:	
+   843  06F3  0008               	return
+   844                           	opt stack 0
+   845                           GLOBAL	__end_of_init
+   846  06F4                     	__end_of_init:
+   847 ;; =============== function _init ends ============
+   848                           
+   849                           	signat	_init,88
+   850                           psect	text88,local,class=CODE,delta=2
+   851                           global __ptext88
+   852  0000                     __ptext88:
+   853                           	global	btemp
+   854  007E                     	btemp set 07Eh
+   855                           
+   856                           	DABS	1,126,2	;btemp
+   857                           	global	wtemp0
+   858  007E                     	wtemp0 set btemp
+
+
+HI-TECH Software PICC Macro Assembler V9.80 build 6738 
+Symbol Table                                                                                   Wed Jun 20 22:46:24 2012
+
+                   _a 0072                    u10 06D0                    u11 06CF                    u20 06DB  
+                  u21 06DA                   l561 06F3                   l570 06D5                   l571 06D5  
+                 l564 06CA                   l572 06DC                   l580 071A                   l565 06CA  
+                 l573 06E2                   l581 07B0                   l566 06D1                   l582 07FB  
+                 l567 06D3                   l584 07F5                   l576 06FA                   l585 07FC  
+                 l577 0719                   l586 07FD                   l578 0718                   l587 07FD  
+                 l579 071B                   l960 06E8                   l962 06E9                   l970 06C9  
+                 l964 06EC                   l956 06E3                   l972 06D1                   l966 06ED  
+                 l958 06E7                   l974 06D4                   l968 06F0                   l976 06DC  
+                 l978 06E2                  l1800 07E8                  l1802 07EE                  l1804 07F5  
+                l1770 0702                  l1780 07AB                  l1772 0708                  l1790 07CA  
+                l1782 07B0                  l1774 0710                  l1766 06F4                  l1792 07D0  
+                l1784 07B8                  l1776 0717                  l1768 06FA                  l1794 07D6  
+                l1786 07BE                  l1778 071B                  l1796 07DC                  l1788 07C4  
+                l1798 07E2                  _BRGH 04C2                  _CREN 00C4                  u2200 07CA  
+                u2201 07C9                  u2210 07D0                  u2211 07CF                  u2220 07D6  
+                u2221 07D5                  u2230 07DC                  u2231 07DB                  u2240 07E2  
+                u2160 0708                  u2241 07E1                  u2161 0707                  u2250 07E8  
+                u2170 0716                  u2251 07E7                  u2171 0715                  u2260 07EE  
+                u2180 07BE                  u2261 07ED                  u2181 07BD                  u2270 07F4  
+                u2190 07C4                  u2271 07F3                  u2191 07C3                  _RCIF 0065  
+                _SPEN 00C7                  _TXEN 04C5                  _TXIF 0064                  _main 06F4  
+                _init 06E3                  btemp 007E                  start 0000                 ?_main 0070  
+               ?_init 0070                 _RCREG 001A                 _SPBRG 0099                 _PORTD 0008  
+               _TRISD 0088                 _TXREG 0019       __end_of_display 06D4       __end_of_receive 06E3  
+               status 0003                 wtemp0 007E          __end_of_main 0800          __end_of_init 06F4  
+              ??_main 0071                ??_init 0070             ??_display 0070             ??_receive 0070  
+      __pcstackCOMMON 0070            __pnvCOMMON 0072            __pmaintext 06F4               _display 06C8  
+             _receive 06D4  end_of_initialization 06C4   start_initialization 06C4              ?_display 0070  
+            ?_receive 0070      __size_of_display 000C      __size_of_receive 000F              __ptext85 06D4  
+            __ptext86 06C8              __ptext87 06E3              __ptext88 0000         __size_of_main 010C  
+       __size_of_init 0011              display@c 0070  
